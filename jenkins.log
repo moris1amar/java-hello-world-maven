@@ -1,0 +1,112 @@
+Started by user unknown or anonymous
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/hello-world
+[Pipeline] {
+[Pipeline] isUnix
+[Pipeline] sh
++ docker inspect -f . maven:3.3.9
+.
+[Pipeline] withDockerContainer
+Jenkins does not seem to be running inside a container
+$ docker run -t -d -u 124:130 -i --entrypoint= -w /var/lib/jenkins/workspace/hello-world -v /var/lib/jenkins/workspace/hello-world:/var/lib/jenkins/workspace/hello-world:rw,z -v /var/lib/jenkins/workspace/hello-world@tmp:/var/lib/jenkins/workspace/hello-world@tmp:rw,z -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** maven:3.3.9 cat
+$ docker top e5dbc2035bcd6a9be152a2a079ddbf836c24a4410cec8ca78f02bd4dbf375070 -eo pid,comm
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Compile Hello World)
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] git
+No credentials specified
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/moris1amar/java-hello-world-maven.git # timeout=10
+Fetching upstream changes from https://github.com/moris1amar/java-hello-world-maven.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.28.0'
+ > git fetch --tags --force --progress -- https://github.com/moris1amar/java-hello-world-maven.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/main^{commit} # timeout=10
+Checking out Revision baea064e3b6893a041dc4bb39dfd647bcc582935 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f baea064e3b6893a041dc4bb39dfd647bcc582935 # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git branch -D main # timeout=10
+ > git checkout -b main baea064e3b6893a041dc4bb39dfd647bcc582935 # timeout=10
+Commit message: "Delete scr directory"
+ > git rev-list --no-walk d8d0aa6b7b0dd29710f06d5f18fb44e1d682f0f9 # timeout=10
+[Pipeline] sh
++ mvn --version
+Apache Maven 3.3.9 (bb52d8502b132ec0a5a3f4c09453c07478323dc5; 2015-11-10T16:41:47+00:00)
+Maven home: /usr/share/maven
+Java version: 1.8.0_121, vendor: Oracle Corporation
+Java home: /usr/lib/jvm/java-8-openjdk-amd64/jre
+Default locale: en, platform encoding: UTF-8
+OS name: "linux", version: "5.4.0-77-generic", arch: "amd64", family: "unix"
+[Pipeline] sh
++ mvn clean install
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building hello-world-maven 0.1.0
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ hello-world-maven ---
+[INFO] Deleting /var/lib/jenkins/workspace/hello-world/target
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ hello-world-maven ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory /var/lib/jenkins/workspace/hello-world/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ hello-world-maven ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[INFO] Compiling 2 source files to /var/lib/jenkins/workspace/hello-world/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ hello-world-maven ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory /var/lib/jenkins/workspace/hello-world/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ hello-world-maven ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ hello-world-maven ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ hello-world-maven ---
+[INFO] Building jar: /var/lib/jenkins/workspace/hello-world/target/hello-world-maven-0.1.0.jar
+[INFO] 
+[INFO] --- maven-shade-plugin:2.1:shade (default) @ hello-world-maven ---
+[INFO] Replacing original artifact with shaded artifact.
+[INFO] Replacing /var/lib/jenkins/workspace/hello-world/target/hello-world-maven-0.1.0.jar with /var/lib/jenkins/workspace/hello-world/target/hello-world-maven-0.1.0-shaded.jar
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ hello-world-maven ---
+[INFO] Installing /var/lib/jenkins/workspace/hello-world/target/hello-world-maven-0.1.0.jar to /var/lib/jenkins/workspace/hello-world/?/.m2/repository/org/springframework/hello-world-maven/0.1.0/hello-world-maven-0.1.0.jar
+[INFO] Installing /var/lib/jenkins/workspace/hello-world/pom.xml to /var/lib/jenkins/workspace/hello-world/?/.m2/repository/org/springframework/hello-world-maven/0.1.0/hello-world-maven-0.1.0.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 1.475 s
+[INFO] Finished at: 2021-07-26T10:31:23+00:00
+[INFO] Final Memory: 16M/206M
+[INFO] ------------------------------------------------------------------------
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Run Hello World)
+[Pipeline] sh
++ java -cp target/hello-world-maven-0.1.0.jar hello.HelloWorld
+Hello World!!
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+$ docker stop --time=1 e5dbc2035bcd6a9be152a2a079ddbf836c24a4410cec8ca78f02bd4dbf375070
+$ docker rm -f e5dbc2035bcd6a9be152a2a079ddbf836c24a4410cec8ca78f02bd4dbf375070
+[Pipeline] // withDockerContainer
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

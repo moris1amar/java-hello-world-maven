@@ -1,11 +1,18 @@
 pipeline {
     agent { 
-        docker { image 'maven:3.3.9' } 
-        }
+        docker { 
+            image 'maven:3.3.9' 
+            args '-i --entrypoint='
+        } 
+    }
     stages {
         stage('Compile Hello World') {
+            environment {
+                  HOME="."
+                }
             steps {
-                git 'https://github.com/moris1amar/java-hello-world-maven'
+                git branch: 'main',
+                    url: 'https://github.com/moris1amar/java-hello-world-maven.git'
                 sh 'mvn --version'
                 sh 'mvn clean install'
             }

@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Compile Hello World') {
             steps {
-                git 'https://github.com/learn-devops-fast/...'
+                git 'https://github.com/moris1amar/java-hello-world-maven'
                 sh 'mvn --version'
                 sh 'mvn clean install'
             }
